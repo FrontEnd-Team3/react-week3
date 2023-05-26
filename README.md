@@ -1,24 +1,7 @@
-# 문제 1
+# 👩‍💻Daily Scrum
 
-### 🥗재료 추가 로직 분리하기
+### 0527
 
-1. 재료 추가 로직 작성하기
-2. 재료 삭제 로직 작성하기
-3. 위 로직을 분리하여 src/store/1_reducer.js에 구현
-
-# 문제 2-1
-
-### 🖥️전역 모달창 띄우기
-
-1. ContextQ1Modal에 모달창 컴포넌트 구현
-2. src/stor/2_context.js에 useContext를 사용하여 모달의 state 구현 (without props)
-3. ContextQ1Detail, ContextQ1Detail2의 모달창 보이기/숨기기 버튼 구현
-
-# 문제 2-2
-
-### 🧾userList 구현하기
-
-1. Form1에 값 입력 시 userList에 데이터 추가
-2. Form2에서 버튼 클릭 시 userList의 각 요소인 객체에 isEdit: true 속성 추가
-3. Form3에서 reset 버튼 클릭 시 userList 초기화
-4. 제출 버튼 클릭 시 isEdit: true인 userList만 console에 출력 (해당 데이터도 전역으로 관리)
+📍 오늘 한 일<br/>: faker.js, Reactstrap 사용 방법 공부 및 적용, navbar toggle 부분 구현, main logo부분 구현
+📍 아쉬웠던 점 <br/>: 라이브러리를 직접 찾아서 적용하는 것이 처음이다보니 시간이 오래 걸리는 것이 느껴졌다. 또한 스타일 관련 라이브러리를 정함에 있어 Reactstrap이 편리하긴 하지만 다양한 스타일을 적용하기에는 한계가 있는 것 같아서 다양한 라이브러리를 접해볼 수 있도록 더 찾아볼 예정이다.
+📍 내일 할 일<br/>: search, 장바구니 탭 구현
