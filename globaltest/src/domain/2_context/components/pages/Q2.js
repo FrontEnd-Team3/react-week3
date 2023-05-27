@@ -35,7 +35,11 @@ const ContextQ2Page = () => {
       >
         <button onClick={() => userListDispatch(CONSOLE())}>SUBMIT</button>
       </div>
-      {userList.map((oneState) => `${oneState.name} ${oneState.nickname}`)}
+      {userList.map((oneState) => (
+        <div>
+          {oneState.name} {oneState.nickname}
+        </div>
+      ))}
       <NavigateButton isLastPage />
     </>
   );
