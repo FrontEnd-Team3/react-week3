@@ -5,17 +5,17 @@ import { UseStore } from "../../../../../store/3_context";
 const ContextQ2Form = () => {
   const [name, setName] = useState();
   const [nickname, setNickname] = useState();
-
+  const id = 2;
   const handleName = (e) => {
     setName(e.target.value);
+    return;
   };
   const handleNickname = (e) => {
     setNickname(e.target.value);
+    return;
   };
 
-  // const { listState, listDispatch } = useContext(useState);
-
-  const { listState, listDispatch } = useContext(UseStore);
+  const { listDispatch } = useContext(UseStore);
 
   const handleAdd = (e) => {
     e.preventDefault();

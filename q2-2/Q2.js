@@ -25,20 +25,31 @@ const ContextQ2Page = () => {
     (일반 state를 사용하는 문제가 아니기 때문에 전역으로 상태관리를 할 수 있도록 해주세요)
     관련 로직은 src/store/3_context.js에 구현해주세요
   */
-//-----------------------------------------------------------]
+  //-----------------------------------------------------------]
 
   const reducer = (oldList, action) => {
     if (action.type === "ADD") {
       return [...oldList, action.payload];
     } else if (action.type === "EDIT") {
-      return (oldList.isEdit = true);
+      return oldList.map((v) => ({ ...v, isEdit: "true" }));
+    } else if (action.type === "RESET") {
+      return oldList.filter((v) => v.id === 1);
+    } else if (action.type === "SUBMIT") {
+      return console.log(oldList.filter((v) => v.isEdit === "true"));
     }
+    return;
   };
 
   const [listState, listDispatch] = useReducer(reducer, userList);
+  console.log(listState);
 
+  const handleSubmit = () => {
+    listDispatch({
+      type: "SUBMIT",
+    });
+  };
   //------------------------------------------------------------
-  console.log(userList);
+
   return (
     <>
       <UseStore.Provider value={{ listState, listDispatch }}>
@@ -50,7 +61,7 @@ const ContextQ2Page = () => {
             marginTop: "32px",
           }}
         >
-          <button>SUBMIT</button>
+          <button onClick={handleSubmit}>SUBMIT</button>
         </div>
         <NavigateButton isLastPage />
       </UseStore.Provider>
