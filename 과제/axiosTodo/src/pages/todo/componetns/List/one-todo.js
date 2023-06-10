@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faBan, faPen } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import useInput from "../../../../hooks/use-input";
+import useTodo from "hooks/use-todo";
 
-const OneTodo = ({ todo, updateTodo, updateTodoState, deleteTodo }) => {
+const OneTodo = ({ todo }) => {
   const { id, state, title, content } = todo;
   const [isEditMode, setIsEditMode] = useState(false);
   const [editContent, onChangeEditContent] = useInput(content);
+  const { updateTodo, updateTodoState, deleteTodo } = useTodo();
 
   const handleTodoEdit = () => {
     if (!isEditMode) return setIsEditMode(true);
@@ -17,7 +19,8 @@ const OneTodo = ({ todo, updateTodo, updateTodoState, deleteTodo }) => {
   };
 
   const handleEditState = () => {
-    updateTodoState(id, content, state);
+    const newState = !state;
+    updateTodoState(id, content, newState);
   };
 
   const handleTodoDelete = async () => {

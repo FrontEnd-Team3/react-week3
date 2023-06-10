@@ -36,9 +36,11 @@ const OneTodo = ({ todo }) => {
   };
 
   const handleStateEdit = () => {
+    console.log("check", state);
     dispatch(
-      updateTodoState({
+      updateTodoContent({
         id,
+        content,
         state: !state,
       })
     );

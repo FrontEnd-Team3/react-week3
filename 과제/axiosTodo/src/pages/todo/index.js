@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import BasicButton from "../../components/Button/Button";
 import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../styles/common";
@@ -6,42 +6,12 @@ import TodoAddModal from "./componetns/Modal/add-modal";
 import TodoList from "./componetns/List/todo-list";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { axiosInstance } from "utils/axios";
 import useTodo from "hooks/use-todo";
+import { useModal } from "context/modal";
 
 const TodoPage = () => {
-  const [isAddTodoModal, setIsAddTodoModal] = useState(false);
-  // const [todoList, setTodoList] = useState([]);
-  const [todoList, setTodoList] = useTodo();
-
-  // useEffect(() => {
-  //   const getTodoList = async () => {
-  //     try {
-  //       const res = await axiosInstance.get("/todo");
-  //       console.log(res);
-  //       setTodoList(res.data.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getTodoList();
-  // }, []);
-
-  const addTodo = async (title, content) => {
-    try {
-      if (!title || !content) {
-        const err = new Error();
-        err.type = "empty error";
-        err.message = "빈칸을 채워주세요";
-        throw err;
-      }
-      const res = await axiosInstance.post("/todo", { title, content });
-      setTodoList([res.data.data, ...todoList]);
-      setIsAddTodoModal(false);
-    } catch (err) {
-      throw err;
-    }
-  };
+  const { isAddTodoModal, setIsAddTodoModal } = useModal();
+  const { addTodo } = useTodo();
 
   const showTodoToastMessage = (e) => {
     e.preventDefault();
@@ -85,7 +55,7 @@ const TodoPage = () => {
         <S.Container>
           <S.Title>List</S.Title>
           <S.Content>
-            <TodoList todoList={todoList} setTodoList={setTodoList} />
+            <TodoList />
           </S.Content>
           <S.ButtonBox>
             <BasicButton

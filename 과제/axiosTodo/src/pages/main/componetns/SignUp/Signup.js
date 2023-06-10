@@ -3,6 +3,7 @@ import BasicButton from "../../../../components/Button/Button";
 import useInputs from "../../../../hooks/use-inputs";
 import * as S from "../style";
 import axios from "axios";
+import AuthApi from "apis/auth.api";
 
 const SignUpForm = ({ setIsFormLogin }) => {
   const [{ email, password, passowrdConfirm }, onChangeForm] = useInputs({
@@ -18,15 +19,18 @@ const SignUpForm = ({ setIsFormLogin }) => {
     setIsPasswordConfirm(true);
   }, [password, passowrdConfirm]);
 
-  const handleSignUpSumbit = (e) => {
+  const handleSignUpSumbit = async (e) => {
     e.preventDefault();
     if (!email || !password) return;
     if (!isPasswordConfirm) return;
 
-    axios
-      .post("http://localhost:9000/user/sign", { email, password })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    // axios
+    //   .post("http://localhost:9000/user/sign", { email, password })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
+    await AuthApi.signUp(email, password);
+    alert("회원가입이 완료되었습니다.");
+    setIsFormLogin(true);
   };
 
   return (

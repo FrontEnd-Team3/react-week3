@@ -29,21 +29,37 @@ export const deleteTodo = rest.delete(
   "/api/todo/:id",
   async (req, res, ctx) => {
     const { id } = req.params;
-    const filteredArr = todoMock.filter((todo) => todo.id !== id);
-    return res(ctx.status(200), ctx.json(filteredArr));
+    // const filteredArr = todoMock.filter((todo) => todo.id !== parseInt(id));
+    return res(ctx.status(200), ctx.json({ id: parseInt(id) }));
   }
 );
 
-// export const updateTodoContent = rest.post(
+export const updateTodoContent = rest.put(
+  "/api/todo/:id",
+  async (req, res, ctx) => {
+    const { id } = req.params;
+    let content;
+    let state;
+
+    await req.json().then((data) => {
+      content = data.content;
+      state = data.state;
+    });
+
+    return res(ctx.status(200), ctx.json({ id: parseInt(id), content, state }));
+  }
+);
+
+// export const updateTodoState = rest.put(
 //   "/api/todo/:id",
 //   async (req, res, ctx) => {
 //     const { id } = req.params;
-//     let content;
+//     let state;
 
 //     await req.json().then((data) => {
-//       content = data.content;
+//       state = data.state;
 //     });
 
-//     return res(ctx.status(200), ctx.json({id, content}));
+//     return res(ctx.status(200), ctx.json({ id: parseInt(id), state }));
 //   }
 // );

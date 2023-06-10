@@ -5,14 +5,17 @@ import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import GlobalStyles from "./styles/global";
 import TodoListProvider from "context/todo";
+import AddModalProvider from "context/modal";
 
 function App() {
   return (
     <TodoListProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <AddModalProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </AddModalProvider>
     </TodoListProvider>
 
     //     <BrowserRouter>

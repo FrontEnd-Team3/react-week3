@@ -1,10 +1,11 @@
 import * as S from "../style";
 import BasicButton from "components/Button/Button";
-import axios from "axios";
-import { SignInUser } from "./api-call";
-import { setToken } from "utils/accessToken";
+import { useNavigate } from "react-router-dom";
+import { SignInUser } from "context/auth";
 
 const SignInForm = () => {
+  const navigation = useNavigate();
+
   const onPressSignIn = async (e) => {
     e.preventDefault();
     console.log(e.target.email.value, e.target.password.value);
@@ -12,26 +13,11 @@ const SignInForm = () => {
     const password = e.target.password.value;
 
     try {
-      const res = await SignInUser(email, password);
-      // localStorage.setItem("accessToken", res.data.data.token);
-      setToken(res.data.data.token);
+      await SignInUser(email, password);
+      navigation("/todo/3");
     } catch (err) {
       console.error(err);
     }
-
-    // try {
-    //   const res = await axios.post(
-    //     "http://localhost:9000/user/login",
-    //     {
-    //       email,
-    //       password,
-    //     },
-    //     { withCredentials: true }
-    //   );
-    //   localStorage.setItem("accessToken", res.data.data.token);
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
 
   return (
